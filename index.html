@@ -1,50 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doge
-    </title>
-    <script src="index.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search country</title>
+    <script src="index.js" defer></script>
     <script
-    src="https://kit.fontawesome.com/c8e4d183c2.js"
-    crossorigin="anoynymous"
-  ></script>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
+      src="https://kit.fontawesome.com/c8e4d183c2.js"
+      crossorigin="anoynymous"
+    ></script>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
     <section id="landing">
-    <div class="row nav__row">
+      <div class="row nav__row">
         <nav>
-        
-            <a href="#">
-            <img src="./assets/logo.png" alt="" class="logo">
-            </a>
-        <ul class="nav__link--list">
+          <a href="#">
+            <img src="./assets/logo.png" alt="" class="logo" />
+          </a>
+          <ul class="nav__link--list">
             <li class="nav__link click">Home</li>
-            <li class="nav__link click">Dog Breeds</li>
+            <li class="nav__link click">Country</li>
             <li class="nav__link click nav__link--search">Contact</li>
-        </ul>
-        </nav>  
-    </div>
-    <header>
+          </ul>
+        </nav>
+      </div>
+      <header>
         <div class="row header__row">
-        
-        <figure class="header__img--wrapper">
-            <img class="header__img" src="./assets/undraw_good_doggy_re_eet7 (1).svg" alt="">
-        </figure>
-        
-        <h1 class="header__title">Search Doges</h1>
-        <div class="form__container">
-        <form action="">
-            <input class="input__search" type="text" placeholder="Search your favorite dog breed. Ex. Terrier, Hound">
-        </form>
-        <a href="" class="dog__icon"
-              ><i class="fas fa-dog"></i
-            ></a>
+          <figure class="header__img--wrapper">
+            <img
+              class="header__img"
+              src="./assets/header.svg"
+              alt=""
+            />
+          </figure>
+
+
+
+          <h1 class="header__title">Country Lookup</h1>
+          
+      </header>
+      <div class="row search-sort__wrapper">
+        <div class="search__wrapper">
+          <a class="search__icon"><i class="fas fa-search"></i> </a>
+          <input
+            name="searchBar"
+            class="search__input"
+            id="searchBar"
+            type="search"
+            placeholder="Search country or capital city"
+            data-search
+            />
+          
         </div>
-        </div>
-    </header>
-</section>
-</body>
+    
+      <select class="sort__wrapper" id="sortCountries" onchange="sortCountries(event)">
+        <option value="" disabled selected>Sort: Country Population</option>
+        <option value="LOW_TO_HIGH">Population, Lowest to Highest</option>
+        <option value="HIGH_TO_LOW">Population, Highest to Lowest</option>
+      </select>
+    </div>
+    <div class="loading">
+      <i
+        class="fas fa-spinner country__loading--spinner"
+        aria-hidden="true"
+      ></i>
+    </div>
+      <div id="countryList" class="row country__list">
+        <!-- <div class="country">
+          <img class="country__img" src="" alt="" />
+          <h4 class="country__name"></h4>
+          <p class="country__capital"></p>
+          <p class="country__currency"></p>
+        </div> -->
+      </div>
+    </section>
+  </body>
+
 </html>
