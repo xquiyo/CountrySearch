@@ -3,13 +3,11 @@ const searchBar = document.getElementById("searchBar");
 const sortCountryPop = document.getElementById("sortCountries");
 const loadingSpinner = document.querySelector('.country__loading--spinner');
 const btnSearch = document.querySelector('.search__icon');
-const btnShowAll = document.querySelector('.btn__show');
+
 
 let countryData = [];
 let filteredAndSortedCountries = [];
 
-
-// API call to display countries
 const fetchAndDisplayCountries = async () => {
   try {
     loadingSpinner.style.display = 'block';
@@ -33,7 +31,7 @@ const fetchAndDisplayCountries = async () => {
       filteredCountries.sort((a, b) => b.name.localeCompare(a.name));
     }
     
-    filteredAndSortedCountries = filteredCountries; 
+    filteredAndSortedCountries = filteredCountries.slice(0, 6); 
     displayCountries(filteredAndSortedCountries);
 
 
@@ -45,29 +43,6 @@ const fetchAndDisplayCountries = async () => {
 };
 
 
-// show all button
-const fetchAndDisplayAllCountries = async () => {
-  try {
-    loadingSpinner.style.display = 'block';
-    const res = await fetch("https://api.sampleapis.com/countries/countries");
-    countryData = await res.json();
-  
-    searchBar.value = ''; 
-    sortCountryPop.value = ''; 
-    
-    sortCountryPop.style.display = 'block'; 
-    
-    displayCountries(countryData); 
-  } catch (err) {
-    console.log(err);
-  } finally {
-    loadingSpinner.style.display = 'none';
-  }
-};
-
-
-// my functions
-
 searchBar.addEventListener("keyup", (e) => {
   if (e.key === 'Enter') {
     fetchAndDisplayCountries();
@@ -78,20 +53,16 @@ btnSearch.addEventListener("click", () => {
   fetchAndDisplayCountries();
 });
 
-btnShowAll.addEventListener("click", () => {
-  fetchAndDisplayAllCountries();
-});
+
 
 sortCountryPop.addEventListener("change", fetchAndDisplayCountries);
+
 const displayCountries = (countries) => {
   if (countries.length === 0) {
     countryList.innerHTML = '<p>The country you searched does not exist</p>';
     return;
   }
   
-
-
-// country html
   const htmlString = countries
     .map((country) => {
       return `<div class="country">
